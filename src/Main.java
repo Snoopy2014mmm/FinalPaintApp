@@ -64,6 +64,13 @@ public class Main {
         ClearListener ClearListener = new ClearListener(panelContents);
         clearButton.addActionListener(ClearListener);
 
+        JButton stamp = new JButton("stamp");
+        stamp.setBounds(5, 5, 70, 40);
+        panelMenubar.add(stamp);
+        StampListener stampAction= new StampListener(panelContents);
+        panelContents.addMouseListener(stampAction);
+        panelContents.addMouseMotionListener(stampAction);
+
 
 
         JComboBox<String> cb1 = new JComboBox<>();
