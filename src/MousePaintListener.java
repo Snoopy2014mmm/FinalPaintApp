@@ -1,4 +1,4 @@
-import java.awt.Graphics;
+import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
@@ -16,10 +16,11 @@ public class MousePaintListener implements MouseInputListener {
     private int newy;
     private DrawPanel panel;
     private boolean isSmooth;
+    private Container container;
 
-    public MousePaintListener(Graphics g) {
+    public MousePaintListener(Container container) {
         limit = 1;
-        this.g = g;
+        this.container = container;
         panel = new DrawPanel(this.g);
 
     }
@@ -45,7 +46,7 @@ public class MousePaintListener implements MouseInputListener {
     @Override
     public void mouseReleased(MouseEvent e) {
         // TODO 自動生成されたメソッド・スタブ
-
+        this.g = container.getGraphics();
         if(limit == 1) {
             this.g.fillOval(e.getX(), e.getY(), 2, 2);
             reset();
@@ -86,7 +87,8 @@ public class MousePaintListener implements MouseInputListener {
     @Override
     public void mouseDragged(MouseEvent e) {
         // TODO 自動生成されたメソッド・スタブ
-
+        panel = new DrawPanel(container.getGraphics());
+        System.out.println(String.format("(%d, %d)", e.getX(), e.getY()));
 
         if(isSmooth) {
             newx = e.getX();

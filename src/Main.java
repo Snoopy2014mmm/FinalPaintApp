@@ -29,7 +29,7 @@ public class Main {
 
 
         Graphics g = panelContents.getGraphics();
-        MousePaintListener listener = new MousePaintListener(g);
+        MousePaintListener listener = new MousePaintListener(panelContents);
         panelContents.addMouseListener(listener);
         panelContents.addMouseMotionListener(listener);
 
