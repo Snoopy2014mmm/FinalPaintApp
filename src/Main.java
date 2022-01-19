@@ -27,9 +27,9 @@ public class Main {
         frame.add(panelContents);
         frame.add(panelMenubar);
 
-
+        SizePaintListener SPL = new SizePaintListener();
         Graphics g = panelContents.getGraphics();
-        MousePaintListener listener = new MousePaintListener(panelContents);
+        MousePaintListener listener = new MousePaintListener(panelContents, SPL);
         panelContents.addMouseListener(listener);
         panelContents.addMouseMotionListener(listener);
 
@@ -41,30 +41,26 @@ public class Main {
         menubar.add(menuSize);
 
         for(String label: ColorPaintListener.colorLabels()) {
-            JMenuItem menu_colors = new JMenuItem((label));
+            JMenuItem menu_colors = new JMenuItem(label);
             menu_colors.addActionListener(new ColorPaintListener(g));
             menuColor.add(menu_colors);
         }
 
-        JPanel panel = new JPanel();
-        JMenuItem menu_thin = new JMenuItem("thin");
-        menu_thin.addActionListener(new SizePaintListener(g, 1));
-        JMenuItem menu_normal = new JMenuItem("normal");
-        menu_normal.addActionListener(new SizePaintListener(g, 3));
-        JMenuItem menu_thick = new JMenuItem("thick");
-        menu_thick.addActionListener(new SizePaintListener(g, 10));
+
+        for(String labelSize: SizePaintListener.sizeLabels()){
+            JMenuItem menu_sizes= new JMenuItem(labelSize);
+            menu_sizes.addActionListener(SPL);
+            menuSize.add(menu_sizes);
+        }
 
 
-        menuSize.add(menu_thin);
-        menuSize.add(menu_normal);
-        menuSize.add(menu_thick);
 
         frame.setJMenuBar(menubar);
 
         JButton clearButton = new JButton("clear");
         clearButton.setBounds(5, 80, 70, 40);
         panelMenubar.add(clearButton);
-        ClearListener ClearListener = new ClearListener(g, panel);
+        ClearListener ClearListener = new ClearListener(panelContents);
         clearButton.addActionListener(ClearListener);
 
 
@@ -76,17 +72,9 @@ public class Main {
         cb1.addItem("eraser");
         cb1.setSelectedIndex(1);
         cb1.setEnabled(true);
-        cb1.addActionListener(new ComboBoxListener(listener, g, panel));
+        cb1.addActionListener(new ComboBoxListener(listener, g, panelContents));
         cb1.setBounds(5, 5, 80, 30);
         panelMenubar.add(cb1);
-
-	     /*JPanel panelbar = new JPanel();
-	     panelbar.setBounds(100, 100, 1000, 50);
-	     panelbar.add(menubar);
-	     panelbar.add(cb1);
-	     panelbar.add(clearButton);
-	     frame.add(panelbar);*/
-
 
         frame.setVisible(true);
 

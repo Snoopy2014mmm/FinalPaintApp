@@ -3,6 +3,7 @@ import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
 import javax.swing.event.MouseInputListener;
+import javax.swing.plaf.basic.BasicBorders;
 
 public class MousePaintListener implements MouseInputListener {
     private int limit;
@@ -17,12 +18,13 @@ public class MousePaintListener implements MouseInputListener {
     private DrawPanel panel;
     private boolean isSmooth;
     private Container container;
+    private SizePaintListener SPL;
 
-    public MousePaintListener(Container container) {
+    public MousePaintListener(Container container, SizePaintListener SPL) {
         limit = 1;
         this.container = container;
-        panel = new DrawPanel(this.g);
-
+        panel = new DrawPanel(this.container.getGraphics());
+        this.SPL = SPL;
     }
 
     @Override
@@ -46,7 +48,7 @@ public class MousePaintListener implements MouseInputListener {
     @Override
     public void mouseReleased(MouseEvent e) {
         // TODO 自動生成されたメソッド・スタブ
-        this.g = container.getGraphics();
+        g = g();
         if(limit == 1) {
             this.g.fillOval(e.getX(), e.getY(), 2, 2);
             reset();
@@ -87,7 +89,7 @@ public class MousePaintListener implements MouseInputListener {
     @Override
     public void mouseDragged(MouseEvent e) {
         // TODO 自動生成されたメソッド・スタブ
-        panel = new DrawPanel(container.getGraphics());
+        panel = new DrawPanel(g());
         System.out.println(String.format("(%d, %d)", e.getX(), e.getY()));
 
         if(isSmooth) {
@@ -120,6 +122,11 @@ public class MousePaintListener implements MouseInputListener {
     public void setIsSmooth(boolean b) {
         // TODO 自動生成されたメソッド・スタブ
         isSmooth = b;
+    }
+    private Graphics g(){
+        Graphics g = container.getGraphics();
+        SPL.changeSize(g);
+        return g;
     }
 
 }

@@ -28,11 +28,14 @@ public class ComboBoxListener extends JFrame implements ActionListener {
         if(cb.getSelectedItem() == "pen") {
             isEraser = false;
             listener.setIsSmooth(true);
+            listener.setLimit(1);
         }else if(cb.getSelectedItem() == "straight") {
             isEraser = false;
+            listener.setIsSmooth(false);
             listener.setLimit(2);
         }else if(cb.getSelectedItem() == "triangle") {
             isEraser = false;
+            listener.setIsSmooth(false);
             listener.setLimit(3);
         }else if(cb.getSelectedItem() == "eraser") {
             isEraser = true;
