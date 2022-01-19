@@ -28,8 +28,9 @@ public class Main {
         frame.add(panelMenubar);
 
         SizePaintListener SPL = new SizePaintListener();
+        ColorPaintListener CPL = new ColorPaintListener();
         Graphics g = panelContents.getGraphics();
-        MousePaintListener listener = new MousePaintListener(panelContents, SPL);
+        MousePaintListener listener = new MousePaintListener(panelContents, SPL, CPL);
         panelContents.addMouseListener(listener);
         panelContents.addMouseMotionListener(listener);
 
@@ -42,7 +43,7 @@ public class Main {
 
         for(String label: ColorPaintListener.colorLabels()) {
             JMenuItem menu_colors = new JMenuItem(label);
-            menu_colors.addActionListener(new ColorPaintListener(g));
+            menu_colors.addActionListener(CPL);
             menuColor.add(menu_colors);
         }
 

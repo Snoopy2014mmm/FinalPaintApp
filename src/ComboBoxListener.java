@@ -25,19 +25,19 @@ public class ComboBoxListener extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         // TODO 自動生成されたメソッド・スタブ
         JComboBox cb = (JComboBox)e.getSource();
-        if(cb.getSelectedItem() == "pen") {
+        if(cb.getSelectedItem().equals("pen")) {
             isEraser = false;
             listener.setIsSmooth(true);
             listener.setLimit(1);
-        }else if(cb.getSelectedItem() == "straight") {
+        }else if(cb.getSelectedItem().equals("straight")) {
             isEraser = false;
             listener.setIsSmooth(false);
             listener.setLimit(2);
-        }else if(cb.getSelectedItem() == "triangle") {
+        }else if(cb.getSelectedItem().equals("triangle")) {
             isEraser = false;
             listener.setIsSmooth(false);
             listener.setLimit(3);
-        }else if(cb.getSelectedItem() == "eraser") {
+        }else if(cb.getSelectedItem().equals("eraser")) {
             isEraser = true;
         }
         if(isEraser) {

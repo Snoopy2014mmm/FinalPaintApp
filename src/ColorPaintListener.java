@@ -1,13 +1,12 @@
 import javax.swing.*;
-import java.awt.Color;
-import java.awt.Graphics;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.HashMap;
 import java.util.Set;
 
 public class ColorPaintListener implements ActionListener {
-    private Graphics g;
+    private Color color = Color.black;
     private static HashMap<String, Color> colors = new HashMap<>(){
         {
             put("black", Color.BLACK);
@@ -23,20 +22,20 @@ public class ColorPaintListener implements ActionListener {
         }
     };
 
-    public ColorPaintListener(Graphics g) {
-        this.g = g;
-    }
     @Override
     public void actionPerformed(ActionEvent e) {
         // TODO 自動生成されたメソッド・スタブ
 
         JMenuItem selected = (JMenuItem) e.getSource();
-        this.g.setColor(colors.get(selected.getText()));
+        this.color = colors.get(selected.getText());
 
     }
     public static String[] colorLabels(){
         Set<String> keys = colors.keySet();
         return keys.toArray(new String[0]);
+    }
+    public void changeColor(Graphics g){
+        g.setColor(color);
     }
 
 }

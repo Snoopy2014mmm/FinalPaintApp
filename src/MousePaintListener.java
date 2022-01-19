@@ -19,12 +19,14 @@ public class MousePaintListener implements MouseInputListener {
     private boolean isSmooth;
     private Container container;
     private SizePaintListener SPL;
+    private ColorPaintListener CPL;
 
-    public MousePaintListener(Container container, SizePaintListener SPL) {
+    public MousePaintListener(Container container, SizePaintListener SPL, ColorPaintListener CPL) {
         limit = 1;
         this.container = container;
         panel = new DrawPanel(this.container.getGraphics());
         this.SPL = SPL;
+        this.CPL = CPL;
     }
 
     @Override
@@ -126,6 +128,7 @@ public class MousePaintListener implements MouseInputListener {
     private Graphics g(){
         Graphics g = container.getGraphics();
         SPL.changeSize(g);
+        CPL.changeColor(g);
         return g;
     }
 
