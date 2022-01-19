@@ -1,4 +1,4 @@
-import java.awt.Graphics;
+import java.awt.*;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -18,13 +18,20 @@ public class Main {
         frame.setLayout(null);
         frame.setResizable(false);
         frame.setVisible(true);
+        JPanel panelMenubar = new JPanel();
+        JPanel panelContents = new JPanel();
+        panelMenubar.setBounds(0, 0, 500, 40);
+        panelContents.setBounds(0, 40, 500, 460);
+        panelMenubar.setBackground(Color.pink);
+        panelContents.setBackground(Color.green);
+        frame.add(panelContents);
+        frame.add(panelMenubar);
 
 
-
-        Graphics g = frame.getGraphics();
+        Graphics g = panelContents.getGraphics();
         MousePaintListener listener = new MousePaintListener(g);
-        frame.addMouseListener(listener);
-        frame.addMouseMotionListener(listener);
+        panelContents.addMouseListener(listener);
+        panelContents.addMouseMotionListener(listener);
 
 
         JMenuBar menubar = new JMenuBar();
@@ -56,7 +63,7 @@ public class Main {
 
         JButton clearButton = new JButton("clear");
         clearButton.setBounds(5, 80, 70, 40);
-        frame.add(clearButton);
+        panelMenubar.add(clearButton);
         ClearListener ClearListener = new ClearListener(g, panel);
         clearButton.addActionListener(ClearListener);
 
@@ -71,7 +78,7 @@ public class Main {
         cb1.setEnabled(true);
         cb1.addActionListener(new ComboBoxListener(listener, g, panel));
         cb1.setBounds(5, 5, 80, 30);
-        frame.add(cb1);
+        panelMenubar.add(cb1);
 
 	     /*JPanel panelbar = new JPanel();
 	     panelbar.setBounds(100, 100, 1000, 50);
