@@ -72,6 +72,7 @@ public class Main {
         cb1.addItem(new ComboBoxItem(3, "triangle"));
         cb1.addItem(new ComboBoxItem(4, "eraser"));
         cb1.addItem(new ComboBoxItem(5, "stamp"));
+        cb1.addItem(new ComboBoxItem(6, "rainbow"));
         cb1.setSelectedIndex(0);
         cb1.addItemListener(new ComboBoxListener(listener));
         cb1.setBounds(5, 5, 80, 30);

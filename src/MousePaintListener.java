@@ -20,6 +20,7 @@ public class MousePaintListener implements MouseInputListener {
     private Container container;
     private SizePaintListener SPL;
     private ColorPaintListener CPL;
+    private Rainbow rainbow;
 
     public MousePaintListener(Container container, SizePaintListener SPL, ColorPaintListener CPL) {
         limit = 1;
@@ -27,6 +28,7 @@ public class MousePaintListener implements MouseInputListener {
         panel = new DrawPanel(this.container.getGraphics());
         this.SPL = SPL;
         this.CPL = CPL;
+        rainbow = new Rainbow();
     }
 
     @Override
@@ -93,11 +95,16 @@ public class MousePaintListener implements MouseInputListener {
         panel = new DrawPanel(g());
         System.out.println(String.format("(%d, %d)", e.getX(), e.getY()));
 
-        if(limit == 1 || limit == 4) {
+        if(limit == 1 || limit == 4 || limit == 6) {
             if(limit == 4){
                 Graphics eraserColorGraphics = g();
                 eraserColorGraphics.setColor(container.getBackground());
                 panel = new DrawPanel(eraserColorGraphics);
+            }
+            if(limit == 6){
+                Graphics rainbowColorGraphics = g();
+                rainbow.changeToRainbow(rainbowColorGraphics);
+                panel = new DrawPanel(rainbowColorGraphics);
             }
             newx = e.getX();
             newy = e.getY();

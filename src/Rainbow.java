@@ -1,12 +1,7 @@
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.*;
 
-public class Rainbow implements ActionListener {
-    private Graphics g;
+public class Rainbow{
     private int count;
-    private Color presentColor;
     private static final Color[] colors = {
             new Color(255, 0, 0),
             new Color(255, 40, 0),
@@ -30,21 +25,15 @@ public class Rainbow implements ActionListener {
             new Color(140, 0, 130),
     };
 
-    public Rainbow(Graphics g) {
-        this.g = g;
+    public Rainbow() {
         count = 0;
-        presentColor = g.getColor();
     }
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        // TODO 自動生成されたメソッド・スタブ
+    public void changeToRainbow(Graphics g){
         g.setColor(colors[count]);
-        if(count > 19) {
+        count++;
+        if (colors.length == count){
             count = 0;
-        }else {
-            count++;
         }
-
     }
 
 }
