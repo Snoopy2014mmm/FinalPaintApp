@@ -93,7 +93,6 @@ public class MousePaintListener implements MouseInputListener {
     public void mouseDragged(MouseEvent e) {
         // TODO 自動生成されたメソッド・スタブ
         panel = new DrawPanel(g());
-        System.out.println(String.format("(%d, %d)", e.getX(), e.getY()));
 
         if(limit == 1 || limit == 4 || limit == 6) {
             if(limit == 4){

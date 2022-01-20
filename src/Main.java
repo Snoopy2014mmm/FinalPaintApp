@@ -41,6 +41,7 @@ public class Main {
         menubar.add(menuColor);
         menubar.add(menuSize);
 
+
         for(String label: ColorPaintListener.colorLabels()) {
             JMenuItem menu_colors = new JMenuItem(label);
             menu_colors.addActionListener(CPL);
@@ -64,7 +65,11 @@ public class Main {
         ClearListener ClearListener = new ClearListener(panelContents);
         clearButton.addActionListener(ClearListener);
 
-
+        JButton saveImage = new JButton("saveImage");
+        saveImage.setBounds(5, 200, 70, 40);
+        panelMenubar.add(saveImage);
+        SaveImage makeImage = new SaveImage(panelContents);
+        saveImage.addActionListener(makeImage);
 
         JComboBox<ComboBoxItem> cb1 = new JComboBox<>();
         cb1.addItem(new ComboBoxItem(1, "pen"));
