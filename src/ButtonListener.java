@@ -1,32 +1,34 @@
-import java.awt.Graphics;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JButton;
+import javax.swing.*;
 
 public class ButtonListener implements ActionListener {
-    private MousePaintListener listener;
-    private Graphics g;
+    private MousePaintListener MPL;
+    private JColorChooser iroErabu;
 
-    public ButtonListener(MousePaintListener listener, Graphics g) {
-        this.listener = listener;
-        this.g = g;
+    public ButtonListener(MousePaintListener MPL, JColorChooser iroErabu){
+        this.MPL = MPL;
+        this.iroErabu = iroErabu;
 
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         // TODO 自動生成されたメソッド・スタブ
-
-        //色追加されたら，hashmapに改良はあり！
-        JButton b = (JButton)e.getSource();
-        if(b.getText().compareTo("直線") == 0) {
-            listener.setLimit(2);
-        }else if(b.getText().compareTo("三角") == 0) {
-            listener.setLimit(3);
-        }else if(b.getText().compareTo("なめらかな曲線") == 0) {
-            listener.setIsSmooth(true);
+        JButton button = (JButton)e.getSource();
+        if(button.getText().equals("choose color")){
+            button.setText("close");
+            iroErabu.setVisible(true);
+        }else if(button.getText().equals("close")){
+            button.setText("choose color");
+            iroErabu.setVisible(false);
+            MPL.setCustomColor(iroErabu.getColor());
+            MPL.setLimit(7);
         }
+
+
 
     }
 

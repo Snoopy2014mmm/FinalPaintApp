@@ -21,6 +21,7 @@ public class MousePaintListener implements MouseInputListener {
     private SizePaintListener SPL;
     private ColorPaintListener CPL;
     private Rainbow rainbow;
+    private Color customColor;
 
     public MousePaintListener(Container container, SizePaintListener SPL, ColorPaintListener CPL) {
         limit = 1;
@@ -94,7 +95,7 @@ public class MousePaintListener implements MouseInputListener {
         // TODO 自動生成されたメソッド・スタブ
         panel = new DrawPanel(g());
 
-        if(limit == 1 || limit == 4 || limit == 6) {
+        if(limit == 1 || limit == 4 || limit == 6 || limit == 7) {
             if(limit == 4){
                 Graphics eraserColorGraphics = g();
                 eraserColorGraphics.setColor(container.getBackground());
@@ -104,6 +105,11 @@ public class MousePaintListener implements MouseInputListener {
                 Graphics rainbowColorGraphics = g();
                 rainbow.changeToRainbow(rainbowColorGraphics);
                 panel = new DrawPanel(rainbowColorGraphics);
+            }
+            if(limit == 7){
+                Graphics customColorGraphics = g();
+                customColorGraphics.setColor(customColor);
+                panel = new DrawPanel(customColorGraphics);
             }
             newx = e.getX();
             newy = e.getY();
@@ -143,4 +149,7 @@ public class MousePaintListener implements MouseInputListener {
         return g;
     }
 
+    public void setCustomColor(Color customColor) {
+        this.customColor = customColor;
+    }
 }

@@ -23,7 +23,7 @@ public class Main {
         panelMenubar.setBounds(0, 0, 500, 40);
         panelContents.setBounds(0, 40, 500, 460);
         panelMenubar.setBackground(Color.pink);
-        panelContents.setBackground(Color.green);
+        panelContents.setBackground(Color.white);
         frame.add(panelContents);
         frame.add(panelMenubar);
 
@@ -82,6 +82,15 @@ public class Main {
         cb1.addItemListener(new ComboBoxListener(listener));
         cb1.setBounds(5, 5, 80, 30);
         panelMenubar.add(cb1);
+
+        JColorChooser iroErabu = new JColorChooser();
+        panelContents.add(iroErabu);
+        iroErabu.setVisible(false);
+        JButton chooseColor = new JButton("choose color");
+        chooseColor.setBounds(100, 5, 70, 40);
+        ButtonListener close = new ButtonListener(listener, iroErabu);
+        chooseColor.addActionListener(close);
+        panelMenubar.add(chooseColor);
 
         frame.setVisible(true);
 
