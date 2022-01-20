@@ -32,8 +32,11 @@ public class MousePaintListener implements MouseInputListener {
     @Override
     public void mouseClicked(MouseEvent e) {
         // TODO 自動生成されたメソッド・スタブ
-        int star = 10;
-        double rad = 36.0;
+        if(limit == 5){
+            g = g();
+            g.drawLine(e.getX(), e.getY()-20, e.getX(), e.getY()+20);
+            g.drawLine(e.getX()-20, e.getY(), e.getX()+20, e.getY());
+        }
 
     }
 
@@ -51,11 +54,7 @@ public class MousePaintListener implements MouseInputListener {
     public void mouseReleased(MouseEvent e) {
         // TODO 自動生成されたメソッド・スタブ
         g = g();
-        if(limit == 1) {
-            this.g.fillOval(e.getX(), e.getY(), 2, 2);
-            reset();
-
-        }else if(limit == 2) {
+        if(limit == 2) {
             this.g.drawLine(listX.get(0), listY.get(0), e.getX(), e.getY());
 
             if(listX.size() == 1) return;
@@ -94,13 +93,19 @@ public class MousePaintListener implements MouseInputListener {
         panel = new DrawPanel(g());
         System.out.println(String.format("(%d, %d)", e.getX(), e.getY()));
 
-        if(isSmooth) {
+        if(limit == 1 || limit == 4) {
+            if(limit == 4){
+                Graphics eraserColorGraphics = g();
+                eraserColorGraphics.setColor(container.getBackground());
+                panel = new DrawPanel(eraserColorGraphics);
+            }
             newx = e.getX();
             newy = e.getY();
             panel.drawLine(lastx, lasty, newx, newy);
             lastx = newx;
             lasty = newy;
         }
+
 
 
     }

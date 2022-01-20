@@ -64,23 +64,16 @@ public class Main {
         ClearListener ClearListener = new ClearListener(panelContents);
         clearButton.addActionListener(ClearListener);
 
-        JButton stamp = new JButton("stamp");
-        stamp.setBounds(5, 5, 70, 40);
-        panelMenubar.add(stamp);
-        StampListener stampAction= new StampListener(panelContents);
-        panelContents.addMouseListener(stampAction);
-        panelContents.addMouseMotionListener(stampAction);
 
 
-
-        JComboBox<String> cb1 = new JComboBox<>();
-        cb1.addItem("pen");
-        cb1.addItem("straight");
-        cb1.addItem("triangle");
-        cb1.addItem("eraser");
-        cb1.setSelectedIndex(1);
-        cb1.setEnabled(true);
-        cb1.addActionListener(new ComboBoxListener(listener, g, panelContents));
+        JComboBox<ComboBoxItem> cb1 = new JComboBox<>();
+        cb1.addItem(new ComboBoxItem(1, "pen"));
+        cb1.addItem(new ComboBoxItem(2, "straight"));
+        cb1.addItem(new ComboBoxItem(3, "triangle"));
+        cb1.addItem(new ComboBoxItem(4, "eraser"));
+        cb1.addItem(new ComboBoxItem(5, "stamp"));
+        cb1.setSelectedIndex(0);
+        cb1.addItemListener(new ComboBoxListener(listener));
         cb1.setBounds(5, 5, 80, 30);
         panelMenubar.add(cb1);
 
