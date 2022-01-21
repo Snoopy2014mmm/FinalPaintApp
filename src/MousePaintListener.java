@@ -3,7 +3,6 @@ import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 
 import javax.swing.event.MouseInputListener;
-import javax.swing.plaf.basic.BasicBorders;
 
 public class MousePaintListener implements MouseInputListener {
     private int limit;
@@ -20,6 +19,7 @@ public class MousePaintListener implements MouseInputListener {
     private Container container;
     private SizePaintListener SPL;
     private ColorPaintListener CPL;
+    private ClearListener CL;
     private Rainbow rainbow;
     private Color customColor;
 

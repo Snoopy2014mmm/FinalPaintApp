@@ -29,6 +29,7 @@ public class Main {
 
         SizePaintListener SPL = new SizePaintListener();
         ColorPaintListener CPL = new ColorPaintListener();
+        ClearListener CL = new ClearListener(panelContents);
         Graphics g = panelContents.getGraphics();
         MousePaintListener listener = new MousePaintListener(panelContents, SPL, CPL);
         panelContents.addMouseListener(listener);
@@ -38,8 +39,10 @@ public class Main {
         JMenuBar menubar = new JMenuBar();
         JMenu menuColor = new JMenu("Color");
         JMenu menuSize = new JMenu("Size");
+        JMenu menuClear = new JMenu("Clear");
         menubar.add(menuColor);
         menubar.add(menuSize);
+        menubar.add(menuClear);
 
 
         for(String label: ColorPaintListener.colorLabels()) {
@@ -55,21 +58,15 @@ public class Main {
             menuSize.add(menu_sizes);
         }
 
+        for(String labelClear: ClearListener.colorLabels()) {
+            JMenuItem menu_clearColors = new JMenuItem(labelClear);
+            menu_clearColors.addActionListener(CL);
+            menuClear.add(menu_clearColors);
+        }
+
 
 
         frame.setJMenuBar(menubar);
-
-        JButton clearButton = new JButton("clear");
-        clearButton.setBounds(5, 80, 70, 40);
-        panelMenubar.add(clearButton);
-        ClearListener ClearListener = new ClearListener(panelContents);
-        clearButton.addActionListener(ClearListener);
-
-        JButton saveImage = new JButton("saveImage");
-        saveImage.setBounds(5, 200, 70, 40);
-        panelMenubar.add(saveImage);
-        SaveImage makeImage = new SaveImage(panelContents);
-        saveImage.addActionListener(makeImage);
 
         JComboBox<ComboBoxItem> cb1 = new JComboBox<>();
         cb1.addItem(new ComboBoxItem(1, "pen"));
